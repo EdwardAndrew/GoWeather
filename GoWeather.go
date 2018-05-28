@@ -4,29 +4,25 @@ import (
     "fmt"
     "io/ioutil"
     "net/http"
-    "os"
+    //"os"
     "encoding/json"
     "time"
+    "flag"
     )
 
 func main() {
 
-    arguments := os.Args[1:]
+    apiKey := flag.String("key", "REQUIRED", "OpenWeatherMap Current Weather API key")
+    location := flag.String("l", "London", "Location")
+    //TODO System for parsing tokens in tail
+    flag.Parse()
 
-    if len(os.Args) < 2 {
-        fmt.Println("API and Location need to be provided.")
-        return
-    }else if len(os.Args) < 3 {
-        fmt.Println("Location key needs to be provided.")
+    if *apiKey == "" {
+        fmt.Println("API Key needs to be provided.")
         return
     }
 
-    dataRequested := len(os.Args) > 3
-
-    apiKey := arguments[0]
-    location := arguments[1]
-
-    URL := "http://api.openweathermap.org/data/2.5/weather?q="+location+"&APPID="+apiKey
+    URL := "http://api.openweathermap.org/data/2.5/weather?q="+*location+"&APPID="+*apiKey
 
     var myClient = &http.Client{Timeout: 10 * time.Second}
     response, httpErr := myClient.Get(URL)
@@ -46,8 +42,8 @@ func main() {
     if jsonErr != nil {
         fmt.Println(jsonErr.Error())
     }
-    if !dataRequested {
-        // If no weather token is given just provide the temperature.
-        fmt.Println(KelvinToCelsius(weatherData.Main.Temp))
+    //TODO If no data requested return Temperature
+    if len(flag.Args()) <= 0 {
+            fmt.Println(KelvinToCelsius(weatherData.Main.Temp))
     }
 }
