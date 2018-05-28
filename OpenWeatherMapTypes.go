@@ -29,7 +29,7 @@ type OpenWeatherMapWeather struct {
 
 type OpenWeatherMapMain struct {
     Temp float32 `json:"temp"`
-    Pressure int `json:"pressure"`
+    Pressure float32 `json:"pressure"`
     TempMin float32 `json:"temp-min"`
     TempMax float32 `json:"temp-min"`
 }
@@ -49,6 +49,6 @@ type OpenWeatherMapClouds struct {
 
 type OpenWeatherMapWind struct {
     Speed float32 `json:"speed"`
-    Deg int `json:"deg"`
+    Deg float32 `json:"deg"`
 }
 

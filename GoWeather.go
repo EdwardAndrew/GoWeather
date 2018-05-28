@@ -47,7 +47,7 @@ func main() {
         fmt.Println(jsonErr.Error())
     }
     if !dataRequested {
-        // If no weather token is given just provide the temperature
+        // If no weather token is given just provide the temperature.
         fmt.Println(KelvinToCelsius(weatherData.Main.Temp))
     }
 }
