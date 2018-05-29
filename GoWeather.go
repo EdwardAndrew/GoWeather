@@ -30,6 +30,10 @@ func main() {
         fmt.Println(httpErr.Error())
     }
     defer response.Body.Close()
+    if ((int(response.StatusCode / 100)) != 2) {
+        fmt.Println(*location, "is not a valid location") 
+        return
+    }
 
     bodyBytes, ioErr := ioutil.ReadAll(response.Body)
     if ioErr != nil{
@@ -50,7 +54,7 @@ func main() {
     // Output requested data in the order it was requested.
             var tail []string = flag.Args()
             for i := 0; i < len(tail); i++ {
-                    fmt.Println(tail[i])
+                    OutputWeatherData(weatherData, tail[i])
             }
     }
 }
