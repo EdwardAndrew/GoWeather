@@ -8,6 +8,8 @@ type OpenWeatherMapWeatherResponse struct {
     Visibility int `json:"visibility"`
     Wind OpenWeatherMapWind `json:"wind"`
     Clouds OpenWeatherMapClouds `json:"clouds"`
+    Rain OpenWeatherMapRain `json:"rain"`
+    Snow OpenWeatherMapSnow `json:"snow"`
     Dt int64 `json:"dt"`
     Sys OpenWeatherMapSys `json:"sys"`
     Id int `json:"id"`
@@ -30,8 +32,11 @@ type OpenWeatherMapWeather struct {
 type OpenWeatherMapMain struct {
     Temp float32 `json:"temp"`
     Pressure float32 `json:"pressure"`
+    Humidity float32 `json:"humidity"`
     TempMin float32 `json:"temp-min"`
     TempMax float32 `json:"temp-min"`
+    SeaLevel float32 `json:"sea_level"`
+    GroundLevel float32 `json:"grnd_level"`
 }
 
 type OpenWeatherMapSys struct {
@@ -50,5 +55,13 @@ type OpenWeatherMapClouds struct {
 type OpenWeatherMapWind struct {
     Speed float32 `json:"speed"`
     Deg float32 `json:"deg"`
+}
+
+type OpenWeatherMapRain struct {
+        ThreeH float32 `json:"3h"`
+}
+
+type OpenWeatherMapSnow struct {
+        ThreeH float32 `json:"3h"`
 }
 
