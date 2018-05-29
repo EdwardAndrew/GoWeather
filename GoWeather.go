@@ -38,6 +38,7 @@ func main() {
         fmt.Println(*location, "is not a valid location") 
         return
     } else if (int(response.StatusCode)/100) != 2  {
+        fmt.Println("Something went wrong! Is the service running?")
         return
     }
 
