@@ -14,7 +14,7 @@ func main() {
 
     apiKey := flag.String("key", "REQUIRED", "OpenWeatherMap Current Weather API key")
     location := flag.String("l", "London", "Location")
-    //TODO System for parsing tokens in tail
+
     flag.Parse()
 
     if *apiKey == "" {
@@ -42,8 +42,15 @@ func main() {
     if jsonErr != nil {
         fmt.Println(jsonErr.Error())
     }
-    //TODO If no data requested return Temperature
+
+    // If no data is explicitly requested, output the temperature in Celsius.
     if len(flag.Args()) <= 0 {
             fmt.Println(KelvinToCelsius(weatherData.Main.Temp))
+    } else {
+    // Output requested data in the order it was requested.
+            var tail []string = flag.Args()
+            for i := 0; i < len(tail); i++ {
+                    fmt.Println(tail[i])
+            }
     }
 }
