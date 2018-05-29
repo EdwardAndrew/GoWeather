@@ -7,65 +7,65 @@ import(
 
 func OutputWeatherData(weatherData *OpenWeatherMapWeatherResponse, requestedData string){
         switch strings.ToLower(requestedData) {
-        case "longitude":
+        case "longitude", "lon":
             fmt.Println(requestedData, ":", weatherData.Coord.Lon)
-        case "latitude":
+        case "latitude", "lat":
             fmt.Println(requestedData, ":", weatherData.Coord.Lat)
-        case "weatherid":
+        case "weatherid", "wid":
             fmt.Println(requestedData, ":", weatherData.Weather[0].Id)
-        case "weatherdesc":
+        case "weatherdesc", "wd":
             fmt.Println(requestedData, ":", weatherData.Weather[0].Description)
-        case "weathericon":
+        case "weathericon", "wi":
             fmt.Println(requestedData, ":", weatherData.Weather[0].Icon)
         case "base":
             fmt.Println(requestedData, ":", weatherData.Base)
-        case "tempc":
+        case "tempc", "tc":
             fmt.Println(requestedData, ":", KelvinToCelsius(weatherData.Main.Temp))
-        case "tempf":
+        case "tempf", "tf":
             fmt.Println(requestedData, ":", KelvinToFahrenheit(weatherData.Main.Temp))
-        case "tempk":
+        case "tempk", "tk":
             fmt.Println(requestedData, ":", weatherData.Main.Temp)
-        case "pressure":
+        case "pressure", "p":
             fmt.Println(requestedData, ":", weatherData.Main.Pressure)
-        case "humidity":
+        case "humidity", "h":
             fmt.Println(requestedData, ":", weatherData.Main.Humidity)
-        case "tempminc":
+        case "tempminc", "tminc":
             fmt.Println(requestedData, ":", KelvinToCelsius(weatherData.Main.Temp))
-        case "tempminf":
+        case "tempminf", "tminf":
             fmt.Println(requestedData, ":", KelvinToFahrenheit(weatherData.Main.Temp))
-        case "tempmink":
+        case "tempmink", "tmink":
             fmt.Println(requestedData, ":", weatherData.Main.Temp)
-        case "tempmaxc":
+        case "tempmaxc", "tmaxc":
             fmt.Println(requestedData, ":", KelvinToCelsius(weatherData.Main.Temp))
-        case "tempmaxf":
+        case "tempmaxf", "tmaxf":
             fmt.Println(requestedData, ":", KelvinToFahrenheit(weatherData.Main.Temp))
-        case "tempmaxk":
+        case "tempmaxk", "tmaxk":
             fmt.Println(requestedData, ":", weatherData.Main.Temp)
-        case "sealevel":
+        case "pressuresealevel", "psl":
             fmt.Println(requestedData, ":", weatherData.Main.SeaLevel)
-        case "groundlevel":
+        case "pressuregroundlevel", "pgl":
             fmt.Println(requestedData, ":", weatherData.Main.GroundLevel)
-        case "windspeed":
+        case "windspeed", "wispd":
             fmt.Println(requestedData, ":", weatherData.Wind.Speed)
-        case "winddeg":
+        case "winddeg", "wideg":
             fmt.Println(requestedData, ":", weatherData.Wind.Deg)
-        case "clouds":
+        case "clouds", "c":
             fmt.Println(requestedData, ":", weatherData.Clouds.All)
-        case "rain":
+        case "rain", "r":
             fmt.Println(requestedData, ":", weatherData.Rain.ThreeH)
-        case "snow":
+        case "snow", "s":
             fmt.Println(requestedData, ":", weatherData.Snow.ThreeH)
         case "dt":
             fmt.Println(requestedData, ":", weatherData.Dt)
-        case "country":
+        case "country", "cou":
             fmt.Println(requestedData, ":", weatherData.Sys.Country)
-        case "sunrise":
+        case "sunrise", "sr":
             fmt.Println(requestedData, ":", weatherData.Sys.Sunrise)
-        case "sunset":
+        case "sunset", "ss":
             fmt.Println(requestedData, ":", weatherData.Sys.Sunset)
         case "id":
             fmt.Println(requestedData, ":", weatherData.Id)
-        case "name":
+        case "name", "n":
             fmt.Println(requestedData, ":", weatherData.Name)
         default:
             fmt.Println(requestedData, "could not be found.")
