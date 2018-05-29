@@ -17,7 +17,7 @@ func main() {
 
     flag.Parse()
 
-    if *apiKey == "" {
+    if *apiKey == "REQUIRED" {
         fmt.Println("API Key needs to be provided.")
         return
     }
@@ -30,8 +30,14 @@ func main() {
         fmt.Println(httpErr.Error())
     }
     defer response.Body.Close()
-    if ((int(response.StatusCode / 100)) != 2) {
+
+    if response.StatusCode == 401 {
+        fmt.Println("API key is not valid")
+        return
+    } else if response.StatusCode == 404 {
         fmt.Println(*location, "is not a valid location") 
+        return
+    } else if (int(response.StatusCode)/100) != 2  {
         return
     }
 
