@@ -4,7 +4,7 @@ import (
     "fmt"
     "io/ioutil"
     "net/http"
-    //"os"
+    "os"
     "encoding/json"
     "time"
     "flag"
@@ -12,17 +12,24 @@ import (
 
 func main() {
 
-    apiKey := flag.String("key", "REQUIRED", "OpenWeatherMap Current Weather API key")
-    location := flag.String("l", "London", "Location")
+    file, _ := os.Open("conf.json")
+    defer file.Close()
+    decoder := json.NewDecoder(file)
+    configuration := Configuration{}
+    confErr := decoder.Decode(&configuration)
+    if confErr != nil {
+        fmt.Println(confErr.Error())
+    }
 
+    location := flag.String("l", "London", "Location")
     flag.Parse()
 
-    if *apiKey == "REQUIRED" {
-        fmt.Println("API Key needs to be provided.")
+    if configuration.Apikey == "" {
+        fmt.Println("API Key needs to be provided in conf.json")
         return
     }
 
-    URL := "http://api.openweathermap.org/data/2.5/weather?q="+*location+"&APPID="+*apiKey
+    URL := "http://api.openweathermap.org/data/2.5/weather?q="+*location+"&APPID="+configuration.Apikey
 
     var myClient = &http.Client{Timeout: 10 * time.Second}
     response, httpErr := myClient.Get(URL)
