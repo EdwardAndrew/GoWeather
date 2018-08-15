@@ -4,8 +4,12 @@
 *.dll
 *.so
 *.dylib
+#
+# Swap files
+*.swp
 
 goweather
+conf.json
 
 # Test binary, build with `go test -c`
 *.test
